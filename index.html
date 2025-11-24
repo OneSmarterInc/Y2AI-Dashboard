@@ -162,6 +162,74 @@
             margin-bottom: 20px;
         }
 
+        /* Dynamic Status Interpretation Styles */
+        .status-block {
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .status-upgrade {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+
+        .status-adoption {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .status-transition {
+            background-color: #fce4ec;
+            border-left: 4px solid #e91e63;
+        }
+
+        .status-bubble {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+
+        .status-mixed {
+            background-color: #f5f5f5;
+            border-left: 4px solid #9e9e9e;
+        }
+
+        .status-emoji {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .status-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .status-narrative {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .status-implication {
+            font-size: 15px;
+            font-style: italic;
+            color: #555;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .status-confidence {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Evidence Grid */
         .data-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -173,6 +241,13 @@
             background: #fff;
             border: 1px solid #ddd;
             padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .data-card.highlighted {
+            background-color: #e3f2fd;
+            border: 2px solid #2196f3;
+            transform: scale(1.02);
         }
 
         .data-card-title {
@@ -195,6 +270,95 @@
             margin-top: 5px;
         }
 
+        .evidence-badge {
+            font-size: 11px;
+            color: #2196f3;
+            font-weight: bold;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Historical Parallels */
+        .historical-block {
+            background: #f9f9f9;
+            padding: 25px;
+            border-left: 3px solid #333;
+            margin: 20px 0;
+        }
+
+        .historical-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .historical-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .historical-metrics {
+            font-size: 13px;
+            color: #666;
+            font-family: 'Courier New', monospace;
+            background: #eee;
+            padding: 10px;
+            border-radius: 3px;
+        }
+
+        /* Call to Action Section */
+        .cta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cta-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 25px;
+            text-align: center;
+            min-width: 280px;
+            flex: 1;
+            max-width: 350px;
+        }
+
+        .cta-audience {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .cta-action {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
         /* Footer */
         .footer {
             background: #333;
@@ -208,13 +372,6 @@
             color: #fff;
             text-decoration: none;
             margin: 0 10px;
-        }
-
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #666;
         }
 
         /* Last Update */
@@ -275,6 +432,20 @@
             
             .dial-wrapper {
                 margin: 10px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+            }
+
+            .cta-item {
+                max-width: none;
+            }
+
+            .newsletter input {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -376,16 +547,38 @@
             </div>
             
             <div class="last-update" id="last-update">Updating...</div>
+            
+            <!-- Diagnostic info (hidden by default, shown on error) -->
+            <div id="diagnostic-info" style="display: none; margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; font-size: 13px;">
+                <strong>Troubleshooting:</strong><br>
+                1. <a href="https://script.google.com/macros/s/AKfycbxlWm5R2jVk9ztwIgt4vwMWNgBGO_Eq732pmcD7fYv_DjxeNzFlfkv87kMDlS_JPSLJ/exec" target="_blank">Click here to test API directly</a> (should show JSON data)<br>
+                2. If opening locally, serve via web server instead<br>
+                3. Check browser console (F12) for detailed errors
+            </div>
         </div>
     </div>
 
-    <!-- Thesis Section -->
+    <!-- Dynamic Status Interpretation Section -->
+    <div class="content-section">
+        <div class="container">
+            <h2 class="section-title">Current Market Regime</h2>
+            <div id="status-interpretation">
+                <div class="status-block status-mixed">
+                    <div class="status-emoji">⏳</div>
+                    <div class="status-title">Loading Market Data...</div>
+                    <div class="status-narrative">Connecting to live indicators to determine current market regime.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thesis Section (Static - explains the framework) -->
     <div class="content-section">
         <div class="container">
             <h2 class="section-title">The Thesis</h2>
             <p class="thesis">
-                Current AI infrastructure spending of $240B annually represents a mandatory upgrade cycle similar to Y2K, not speculative excess. 
-                Credit markets validate this through compressed spreads (118bps) despite $60B quarterly capex. 
+                Current AI infrastructure spending represents a mandatory upgrade cycle similar to Y2K, not speculative excess. 
+                Credit markets validate this through compressed spreads despite massive capex commitments. 
                 The divergence between infrastructure commitment and bubble indicators provides quantifiable evidence that this is rational investment, not mania.
             </p>
             <p class="thesis">
@@ -396,30 +589,44 @@
         </div>
     </div>
 
-    <!-- Evidence Grid -->
+    <!-- Dynamic Evidence Grid -->
     <div class="content-section">
         <div class="container">
             <h2 class="section-title">The Evidence</h2>
-            <div class="data-grid">
+            <div class="data-grid" id="evidence-grid">
+                <!-- Will be populated dynamically -->
                 <div class="data-card">
-                    <div class="data-card-title">Hyperscaler Capex</div>
-                    <div class="data-card-value">$240B</div>
-                    <div class="data-card-change">Annual infrastructure commitment</div>
+                    <div class="data-card-title">Loading...</div>
+                    <div class="data-card-value">--</div>
+                    <div class="data-card-change">Fetching data...</div>
                 </div>
-                <div class="data-card">
-                    <div class="data-card-title">Adoption Rate</div>
-                    <div class="data-card-value">73%</div>
-                    <div class="data-card-change">Enterprises with AI initiatives</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Historical Parallels -->
+    <div class="content-section">
+        <div class="container">
+            <h2 class="section-title">Historical Context</h2>
+            <div id="historical-parallels">
+                <div class="historical-block">
+                    <div class="historical-title">Loading Historical Parallel...</div>
+                    <div class="historical-description">Analyzing current indicators to find the most relevant historical comparison.</div>
                 </div>
-                <div class="data-card">
-                    <div class="data-card-title">Productivity Gains</div>
-                    <div class="data-card-value">22%</div>
-                    <div class="data-card-change">Average efficiency improvement</div>
-                </div>
-                <div class="data-card">
-                    <div class="data-card-title">Market Validation</div>
-                    <div class="data-card-value">3/3</div>
-                    <div class="data-card-change">Indicators confirming rationality</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Call to Action -->
+    <div class="content-section">
+        <div class="container">
+            <h2 class="section-title">What This Means For You</h2>
+            <div id="call-to-action">
+                <div class="cta-container">
+                    <div class="cta-item">
+                        <div class="cta-audience">Loading...</div>
+                        <div class="cta-action">Fetching recommendations...</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -453,10 +660,34 @@
     </div>
 
     <script>
-        // API endpoint
+        // ===========================================
+        // CONFIGURATION
+        // ===========================================
         const API_URL = 'https://script.google.com/macros/s/AKfycbxlWm5R2jVk9ztwIgt4vwMWNgBGO_Eq732pmcD7fYv_DjxeNzFlfkv87kMDlS_JPSLJ/exec';
+        const REFRESH_INTERVAL = 60000; // 1 minute
 
-        // Function to update dial positions
+        // Thresholds that define market regimes
+        const THRESHOLDS = {
+            vix_high: 20,
+            vix_low: 15,
+            bubble_infra: 30,
+            bubble_adoption: 60,
+            bubble_speculation: 80,
+            credit_tight: 150,
+            credit_normal: 200,
+            credit_wide: 250
+        };
+
+        // Store current data globally for cross-function access
+        let currentData = {
+            vix: 0,
+            bubble: 0,
+            spread: 0
+        };
+
+        // ===========================================
+        // DIAL UPDATE FUNCTIONS
+        // ===========================================
         function updateDial(dialId, value, min, max) {
             const needle = document.getElementById(dialId);
             if (!needle) return;
@@ -467,14 +698,397 @@
             needle.setAttribute('transform', `rotate(${rotation} 100 140)`);
         }
 
-        // Function to fetch and update dashboard
-        async function updateDashboard() {
-            try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
+        // ===========================================
+        // REGIME DETECTION
+        // ===========================================
+        function determineRegime(bubble, vix, spread) {
+            
+            // UPGRADE CYCLE: High fear (VIX > 20), Low speculation (Bubble < 30), Tight credit (< 150)
+            if (vix > THRESHOLDS.vix_high && bubble < THRESHOLDS.bubble_infra && spread < THRESHOLDS.credit_tight) {
+                return {
+                    name: 'UPGRADE_CYCLE',
+                    emoji: '🟢',
+                    title: 'Infrastructure Buildout Confirmed',
+                    css_class: 'status-upgrade',
+                    historical_parallel: 'Y2K (1998-1999), Cloud Computing (2008-2010)',
+                    confidence: 'HIGH'
+                };
+            }
+            
+            // BUBBLE WARNING: Low fear (VIX < 15), High speculation (Bubble > 80), Wide credit (> 250)
+            if (vix < THRESHOLDS.vix_low && bubble > THRESHOLDS.bubble_speculation) {
+                return {
+                    name: 'BUBBLE_WARNING',
+                    emoji: '🔴',
+                    title: 'Bubble Formation Detected',
+                    css_class: 'status-bubble',
+                    historical_parallel: 'Dot-Com (2000), Crypto (2021)',
+                    confidence: 'HIGH'
+                };
+            }
+            
+            // ADOPTION PHASE: Moderate bubble (30-60), stable other indicators
+            if (bubble >= THRESHOLDS.bubble_infra && bubble <= THRESHOLDS.bubble_adoption) {
+                return {
+                    name: 'ADOPTION',
+                    emoji: '🟡',
+                    title: 'Enterprise Adoption Phase',
+                    css_class: 'status-adoption',
+                    historical_parallel: 'Cloud expansion (2010-2014)',
+                    confidence: 'MEDIUM'
+                };
+            }
+            
+            // TRANSITION: Signals diverging
+            if (Math.abs(vix - THRESHOLDS.vix_high) < 5 || (bubble > THRESHOLDS.bubble_adoption && bubble < THRESHOLDS.bubble_speculation)) {
+                return {
+                    name: 'TRANSITION',
+                    emoji: '⚠️',
+                    title: 'Market Discovering Equilibrium',
+                    css_class: 'status-transition',
+                    historical_parallel: 'Mid-cycle correction patterns',
+                    confidence: 'MEDIUM'
+                };
+            }
+            
+            // Default: Mixed signals
+            return {
+                name: 'MIXED',
+                emoji: '❓',
+                title: 'Mixed Signals',
+                css_class: 'status-mixed',
+                historical_parallel: 'Market transitioning',
+                confidence: 'LOW'
+            };
+        }
+
+        // ===========================================
+        // INTERPRETATION TEXT
+        // ===========================================
+        function getInterpretation(regime, bubble, vix, spread) {
+            const interpretations = {
+                UPGRADE_CYCLE: {
+                    narrative: `Market fear is elevated (VIX at ${vix.toFixed(1)}), protecting against downside, but AI infrastructure investment remains disciplined with the Bubble Index at just ${bubble}. This pattern mirrors Y2K and early cloud computing—necessary spending despite broader uncertainty. Credit markets are validating the spending as rational: spreads at ${spread}bps indicate institutional confidence in the underlying investments.`,
+                    implication: `This is rational infrastructure investment, not speculation. Current thesis: AI buildout continues for 18-24 months regardless of general market conditions. Companies without AI infrastructure will find themselves competitively disadvantaged.`
+                },
+                TRANSITION: {
+                    narrative: `The three indicators are showing divergence, suggesting the market is discovering a new equilibrium. VIX at ${vix.toFixed(1)}, Bubble Index at ${bubble}, and credit spreads at ${spread}bps create a mixed picture. This is a natural phase where different investor groups reassess their positions.`,
+                    implication: `Watch for convergence or divergence of signals over the next 2-4 weeks. If all three align toward infrastructure (low bubble, high VIX, tight spreads), we get directional confirmation of continued buildout. If they align toward speculation (high bubble, low VIX), caution is warranted.`
+                },
+                BUBBLE_WARNING: {
+                    narrative: `Market complacency (VIX at ${vix.toFixed(1)}) combined with elevated AI speculation (Bubble Index at ${bubble}) creates classic bubble conditions. Credit spreads at ${spread}bps suggest institutional money hasn't yet rotated to safety. Historically, this combination precedes sharp reversals.`,
+                    implication: `Risk/reward is shifting negative. The past three instances of this pattern (Dot-Com 2000, housing 2007, crypto 2021) saw 60-80% declines within 6-12 months. This doesn't mean the decline happens immediately, but the setup is concerning.`
+                },
+                ADOPTION: {
+                    narrative: `The market is in enterprise adoption phase with the Bubble Index at ${bubble}—moderate enthusiasm about AI infrastructure, but no bubble extremes yet. VIX at ${vix.toFixed(1)} and spreads at ${spread}bps indicate orderly capital allocation. Spending is accelerating but still disciplined.`,
+                    implication: `Valuations will likely expand as enterprise ROI becomes clearer over the next 12-18 months. This phase resembles cloud computing 2011-2015, when initial skepticism gave way to proven productivity gains and widespread adoption.`
+                },
+                MIXED: {
+                    narrative: `The three indicators are not in clear alignment. VIX at ${vix.toFixed(1)}, Bubble Index at ${bubble}, and credit spreads at ${spread}bps don't fit neatly into historical patterns. The market is still pricing AI infrastructure investment, but the narrative remains contested.`,
+                    implication: `Look for convergence toward one of the defined regimes (upgrade cycle, adoption, or bubble) to get clearer directional bias. In the meantime, fundamentals matter more than momentum.`
+                }
+            };
+            
+            return interpretations[regime.name] || interpretations.MIXED;
+        }
+
+        // ===========================================
+        // DYNAMIC STATUS INTERPRETATION
+        // ===========================================
+        function updateStatusInterpretation(data) {
+            const { bubble, vix, spread } = data;
+            const regime = determineRegime(bubble, vix, spread);
+            const interpretation = getInterpretation(regime, bubble, vix, spread);
+            
+            const statusElement = document.getElementById('status-interpretation');
+            if (statusElement) {
+                statusElement.innerHTML = `
+                    <div class="status-block ${regime.css_class}">
+                        <div class="status-emoji">${regime.emoji}</div>
+                        <div class="status-title">${regime.title}</div>
+                        <div class="status-narrative">${interpretation.narrative}</div>
+                        <div class="status-implication">${interpretation.implication}</div>
+                        <div class="status-confidence">Confidence: ${regime.confidence} | Historical Parallel: ${regime.historical_parallel}</div>
+                    </div>
+                `;
+            }
+        }
+
+        // ===========================================
+        // DYNAMIC EVIDENCE GRID
+        // ===========================================
+        function updateEvidenceGrid(data) {
+            const { bubble, vix, spread } = data;
+            const regime = determineRegime(bubble, vix, spread);
+            
+            // Define evidence items with relevance based on current regime
+            const evidence = [
+                {
+                    title: 'Hyperscaler Capex',
+                    value: '$240B',
+                    subtitle: 'Annual infrastructure commitment',
+                    relevance: 'high',  // Always important
+                    supports: ['UPGRADE_CYCLE', 'ADOPTION']
+                },
+                {
+                    title: 'Enterprise Adoption',
+                    value: '73%',
+                    subtitle: 'With AI initiatives underway',
+                    relevance: bubble > 30 ? 'high' : 'medium',
+                    supports: ['ADOPTION', 'UPGRADE_CYCLE']
+                },
+                {
+                    title: 'Productivity Gains',
+                    value: '22%',
+                    subtitle: 'Average efficiency improvement',
+                    relevance: 'high',
+                    supports: ['UPGRADE_CYCLE', 'ADOPTION']
+                },
+                {
+                    title: 'Credit Validation',
+                    value: spread < 150 ? '✓ Strong' : (spread < 250 ? '~ Moderate' : '✗ Weak'),
+                    subtitle: `Spreads at ${spread}bps`,
+                    relevance: spread < 150 ? 'high' : 'medium',
+                    supports: ['UPGRADE_CYCLE']
+                }
+            ];
+            
+            // Sort by relevance and regime match
+            evidence.sort((a, b) => {
+                const aMatch = a.supports.includes(regime.name) ? 1 : 0;
+                const bMatch = b.supports.includes(regime.name) ? 1 : 0;
+                if (bMatch !== aMatch) return bMatch - aMatch;
                 
-                // Update VIX
+                const relevanceScore = { 'high': 3, 'medium': 2, 'low': 1 };
+                return relevanceScore[b.relevance] - relevanceScore[a.relevance];
+            });
+            
+            const gridElement = document.getElementById('evidence-grid');
+            if (gridElement) {
+                gridElement.innerHTML = evidence.map(e => `
+                    <div class="data-card ${e.relevance === 'high' && e.supports.includes(regime.name) ? 'highlighted' : ''}">
+                        <div class="data-card-title">${e.title}</div>
+                        <div class="data-card-value">${e.value}</div>
+                        <div class="data-card-change">${e.subtitle}</div>
+                        ${e.relevance === 'high' && e.supports.includes(regime.name) ? '<div class="evidence-badge">★ Key Signal</div>' : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ===========================================
+        // DYNAMIC HISTORICAL PARALLELS
+        // ===========================================
+        function updateHistoricalParallels(data) {
+            const { bubble, vix, spread } = data;
+            const regime = determineRegime(bubble, vix, spread);
+            
+            const parallels = {
+                UPGRADE_CYCLE: {
+                    period: '1998-1999 (Y2K Remediation)',
+                    description: `Companies spent heavily to fix systems before the Y2K deadline regardless of immediate ROI. Initial skepticism and elevated fear coexisted with necessary infrastructure investment. Once January 2000 arrived without catastrophe, capex transitioned seamlessly to internet and cloud infrastructure. The key insight: mandatory spending during uncertainty looks different from speculative excess.`,
+                    metric_match: `Current: VIX ${vix.toFixed(1)}, Bubble ${bubble}, Spreads ${spread}bps | Y2K Era: VIX 20-25, Speculation 15-25, Spreads tight`
+                },
+                ADOPTION: {
+                    period: '2010-2014 (Cloud Expansion)',
+                    description: `Initial enterprise skepticism about cloud computing gave way to ROI validation. AWS, Azure, and GCP scaled rapidly as companies proved cost savings and efficiency gains. Valuations expanded as adoption metrics improved, but the expansion was grounded in measurable productivity improvements rather than speculation.`,
+                    metric_match: `Current: VIX ${vix.toFixed(1)}, Bubble ${bubble}, Spreads ${spread}bps | Cloud Era: VIX 15-20, Speculation 30-50, Spreads moderate`
+                },
+                BUBBLE_WARNING: {
+                    period: '1999-2000 (Dot-Com Peak)',
+                    description: `Market complacency combined with retail mania and credit blind to deteriorating fundamentals. When the signals finally aligned toward caution, declines were severe—the NASDAQ fell 75% over the following two years. The pattern: low fear + high speculation + complacent credit = classic bubble setup.`,
+                    metric_match: `Current: VIX ${vix.toFixed(1)}, Bubble ${bubble}, Spreads ${spread}bps | Dot-Com Peak: VIX 12-15, Speculation 85-95, Spreads widening`
+                },
+                TRANSITION: {
+                    period: '2015-2016 (Cloud Maturation)',
+                    description: `A market revaluation period where infrastructure spending came into sharper focus. Temporary volatility as the market digested rapid expansion, followed by resumption of disciplined capex. These transition phases typically resolve within 6-12 months as signals converge.`,
+                    metric_match: `Current: VIX ${vix.toFixed(1)}, Bubble ${bubble}, Spreads ${spread}bps | Mature Phase: VIX 15-25, Speculation 40-50, Spreads variable`
+                },
+                MIXED: {
+                    period: 'Multiple Parallels Apply',
+                    description: `When indicators diverge, historical parallels become less clear. The current combination of signals doesn't map cleanly to past cycles, suggesting the market is processing new information. Watch for convergence toward one of the defined patterns over the coming weeks.`,
+                    metric_match: `Current: VIX ${vix.toFixed(1)}, Bubble ${bubble}, Spreads ${spread}bps | Pattern: Awaiting signal alignment`
+                }
+            };
+            
+            const parallel = parallels[regime.name] || parallels.MIXED;
+            
+            const historicalElement = document.getElementById('historical-parallels');
+            if (historicalElement) {
+                historicalElement.innerHTML = `
+                    <div class="historical-block">
+                        <div class="historical-title">Historical Parallel: ${parallel.period}</div>
+                        <div class="historical-description">${parallel.description}</div>
+                        <div class="historical-metrics">${parallel.metric_match}</div>
+                    </div>
+                `;
+            }
+        }
+
+        // ===========================================
+        // DYNAMIC CALL TO ACTION
+        // ===========================================
+        function updateCallToAction(data) {
+            const regime = determineRegime(data.bubble, data.vix, data.spread);
+            
+            const ctas = {
+                UPGRADE_CYCLE: [
+                    {
+                        audience: 'Asset Managers',
+                        action: 'Infrastructure thesis validated—monitor for regime change signals',
+                        cta: 'View Dashboard',
+                        link: '#dashboard'
+                    },
+                    {
+                        audience: 'Enterprise Leaders',
+                        action: 'Current conditions favor AI infrastructure investment',
+                        cta: 'See Evidence',
+                        link: '#evidence'
+                    },
+                    {
+                        audience: 'CFOs',
+                        action: 'Credit markets validating capex—window remains open',
+                        cta: 'Review Methodology',
+                        link: 'Y2AI_methodology.html'
+                    }
+                ],
+                BUBBLE_WARNING: [
+                    {
+                        audience: 'Portfolio Managers',
+                        action: 'Bubble signals elevated—reassess AI-heavy allocations',
+                        cta: 'Analyze Risk',
+                        link: '#dashboard'
+                    },
+                    {
+                        audience: 'CFOs',
+                        action: 'Stress test capex assumptions against historical patterns',
+                        cta: 'Review Framework',
+                        link: 'Y2AI_methodology.html'
+                    }
+                ],
+                ADOPTION: [
+                    {
+                        audience: 'Enterprise Leaders',
+                        action: 'Adoption phase favors measured infrastructure expansion',
+                        cta: 'See Adoption Metrics',
+                        link: '#evidence'
+                    },
+                    {
+                        audience: 'Investors',
+                        action: 'ROI validation phase—focus on fundamentals over momentum',
+                        cta: 'Track Indicators',
+                        link: '#dashboard'
+                    }
+                ],
+                TRANSITION: [
+                    {
+                        audience: 'All Stakeholders',
+                        action: 'Signals diverging—wait for convergence before major decisions',
+                        cta: 'Track Signals',
+                        link: '#dashboard'
+                    },
+                    {
+                        audience: 'Analysts',
+                        action: 'Review methodology to understand regime detection logic',
+                        cta: 'Read Methodology',
+                        link: 'Y2AI_methodology.html'
+                    }
+                ],
+                MIXED: [
+                    {
+                        audience: 'All Stakeholders',
+                        action: 'Mixed signals require patience—monitor for pattern emergence',
+                        cta: 'Track Dashboard',
+                        link: '#dashboard'
+                    }
+                ]
+            };
+            
+            const activeCtaList = ctas[regime.name] || ctas.MIXED;
+            
+            const ctaElement = document.getElementById('call-to-action');
+            if (ctaElement) {
+                ctaElement.innerHTML = `
+                    <div class="cta-container">
+                        ${activeCtaList.map(cta => `
+                            <div class="cta-item">
+                                <div class="cta-audience">${cta.audience}</div>
+                                <div class="cta-action">${cta.action}</div>
+                                <a href="${cta.link}" class="cta-button">${cta.cta}</a>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        // ===========================================
+        // FALLBACK DATA (used when API unavailable)
+        // ===========================================
+        const FALLBACK_DATA = {
+            vix: 18.5,
+            bubble_index: 42,
+            credit_spread: 118,
+            master_signal: 'INFRASTRUCTURE HEALTHY',
+            narrative: 'Demo mode: API connection unavailable. Showing sample data.'
+        };
+
+        // ===========================================
+        // MAIN DASHBOARD UPDATE
+        // ===========================================
+        async function updateDashboard() {
+            let data;
+            let usingFallback = false;
+            
+            try {
+                // Check if we're running from file:// protocol
+               // if (window.location.protocol === 'file:') {
+               //     console.warn('Running from local file - API calls blocked by CORS. Using fallback data.');
+               //     console.warn('To use live data, serve this file from a web server (e.g., GitHub Pages, Netlify, or local server).');
+               //     throw new Error('Local file CORS restriction');
+               // }
+                
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                data = await response.json();
+                
+            } catch (fetchError) {
+                console.error('Fetch error:', fetchError.message);
+                
+                // Use fallback data
+                data = FALLBACK_DATA;
+                usingFallback = true;
+                
+                // Show warning to user
+                const narrativeEl = document.getElementById('master-narrative');
+                if (narrativeEl) {
+                    if (window.location.protocol === 'file:') {
+                        narrativeEl.textContent = '⚠️ Demo Mode: Open from a web server for live data. Currently showing sample values.';
+                    } else {
+                        narrativeEl.textContent = '⚠️ API temporarily unavailable. Showing last known values.';
+                    }
+                }
+            }
+            
+            try {
+                
+                // Parse values
                 const vixValue = parseFloat(data.vix);
+                const bubbleValue = parseFloat(data.bubble_index);
+                const spreadValue = parseFloat(data.credit_spread);
+                
+                // Store globally for other functions
+                currentData = {
+                    vix: vixValue,
+                    bubble: bubbleValue,
+                    spread: spreadValue
+                };
+                
+                // Update VIX dial
                 document.getElementById('vix-value').textContent = vixValue.toFixed(1);
                 updateDial('vix-needle', vixValue, 10, 50);
                 
@@ -491,8 +1105,7 @@
                 vixStatusEl.textContent = vixStatus;
                 vixStatusEl.className = 'dial-status ' + vixClass;
                 
-                // Update Bubble Index
-                const bubbleValue = parseFloat(data.bubble_index);
+                // Update Bubble Index dial
                 document.getElementById('bubble-value').textContent = Math.round(bubbleValue);
                 updateDial('bubble-needle', bubbleValue, 0, 100);
                 
@@ -509,8 +1122,7 @@
                 bubbleStatusEl.textContent = '▼ ' + bubbleStatus;
                 bubbleStatusEl.className = 'dial-status ' + bubbleClass;
                 
-                // Update Credit Spread
-                const spreadValue = parseFloat(data.credit_spread);
+                // Update Credit Spread dial
                 document.getElementById('spread-value').innerHTML = spreadValue + '<span class="unit">bps</span>';
                 updateDial('spread-needle', spreadValue, 50, 350);
                 
@@ -553,10 +1165,29 @@
                         timeZoneName: 'short'
                     });
                 
-            } catch (error) {
-                console.error('Failed to update dashboard:', error);
+                // =============================================
+                // NEW: Update all dynamic narrative sections
+                // =============================================
+                updateStatusInterpretation(currentData);
+                updateEvidenceGrid(currentData);
+                updateHistoricalParallels(currentData);
+                updateCallToAction(currentData);
+                
+                // If using fallback, add indicator to master signal
+                if (usingFallback) {
+                    const signalEl = document.getElementById('master-signal');
+                    signalEl.textContent = '📊 DEMO MODE';
+                    signalEl.className = 'master-signal signal-warning';
+                    
+                    // Show diagnostic info
+                    const diagEl = document.getElementById('diagnostic-info');
+                    if (diagEl) diagEl.style.display = 'block';
+                }
+                
+            } catch (renderError) {
+                console.error('Render error:', renderError);
                 document.getElementById('master-narrative').textContent = 
-                    'Unable to connect to market data. Please refresh the page.';
+                    'Error processing data. Check browser console for details.';
             }
         }
 
@@ -567,19 +1198,21 @@
             return false;
         }
 
-        // Initial load with animation
+        // ===========================================
+        // INITIALIZATION
+        // ===========================================
         window.addEventListener('load', () => {
-            // Set initial positions
+            // Set initial dial positions
             updateDial('vix-needle', 0, 10, 50);
             updateDial('bubble-needle', 0, 0, 100);
             updateDial('spread-needle', 50, 50, 350);
             
-            // Fetch real data after a brief delay for effect
+            // Fetch real data after brief delay for effect
             setTimeout(updateDashboard, 500);
         });
 
-        // Update every 5 minutes
-        setInterval(updateDashboard, 300000);
+        // Refresh every minute
+        setInterval(updateDashboard, REFRESH_INTERVAL);
     </script>
 </body>
 </html>
