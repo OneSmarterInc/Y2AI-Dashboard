@@ -450,7 +450,8 @@
         }
     </style>
 </head>
-<body>
+<body onload="protect()">
+
     <!-- Header -->
     <div class="header">
         <div class="container">
@@ -618,7 +619,7 @@
     </div>
 
     <!-- Dynamic Call to Action -->
-    <div class="content-section">
+    <!-- <div class="content-section">
         <div class="container">
             <h2 class="section-title">What This Means For You</h2>
             <div id="call-to-action">
@@ -630,7 +631,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Newsletter -->
     <div class="content-section">
@@ -660,6 +661,19 @@
     </div>
 
     <script>
+
+         function protect() {
+      const correctPassword = "OneSmarter12$#"; // 👉 change your password here
+
+      const userPassword = prompt("Enter password to access the site:");
+
+      if (userPassword === correctPassword) {
+        document.getElementById("app").style.display = "block";
+      } else {
+        document.body.innerHTML = "<h1>Access Denied</h1>";
+      }
+    }
+  </script>
         // ===========================================
         // CONFIGURATION
         // ===========================================
